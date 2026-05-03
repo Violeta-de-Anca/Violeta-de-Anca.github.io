@@ -83,10 +83,9 @@
       background: var(--dark);
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       padding: 7rem 4rem 5rem;
       position: relative;
-      gap: 0;
     }
     .hero-left::before {
       content: '';
@@ -121,32 +120,6 @@
       50%       { transform: translateX(calc(var(--x, 0) + 8px)); }
     }
 
-    /* ── PHOTO ── */
-    .profile-photo-wrap {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 2rem;
-      width: fit-content;
-    }
-    .profile-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 2px solid rgba(153,213,201,0.45);
-      box-shadow: 0 0 0 4px rgba(153,213,201,0.1), 0 8px 32px rgba(0,0,0,0.35);
-      display: block;
-    }
-    /* subtle mint glow ring */
-    .profile-photo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 1px solid rgba(153,213,201,0.2);
-    }
-
     .hero-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
@@ -154,20 +127,38 @@
       color: var(--mint);
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       position: relative;
       z-index: 1;
+    }
+
+    /* ── PHOTO + NAME side by side ── */
+    .hero-name-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .profile-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border: 2px solid rgba(153,213,201,0.45);
+      box-shadow: 0 0 0 4px rgba(153,213,201,0.1), 0 8px 32px rgba(0,0,0,0.4);
     }
     h1 {
       font-family: 'EB Garamond', serif;
-      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
       font-weight: 400;
       color: var(--sand);
       line-height: 1.1;
-      position: relative;
-      z-index: 1;
     }
     h1 em { font-style: italic; color: var(--mint); }
+
     .hero-subtitle {
       margin-top: 1.5rem;
       font-size: 0.95rem;
@@ -478,6 +469,8 @@
       .hero { grid-template-columns: 1fr; }
       .hero-left, .hero-right { padding: 5rem 1.5rem 3rem; }
       .helix { display: none; }
+      .hero-name-row { gap: 1rem; }
+      .profile-photo { width: 80px; height: 80px; }
       .section { padding: 4rem 1.5rem; }
       .featured-grid { grid-template-columns: 1fr; }
       .other-grid { grid-template-columns: 1fr; }
@@ -517,13 +510,14 @@
         <div class="helix-dot" style="--x:22px"></div>
       </div>
 
-      <!-- PHOTO -->
-      <div class="profile-photo-wrap">
-        <img class="profile-photo" src="photo.png" alt="Violeta de Anca Prado" />
+      <p class="hero-tag">PhD Researcher · Uppsala University · Sweden</p>
+
+      <!-- NAME beside PHOTO -->
+      <div class="hero-name-row">
+        <h1>Violeta<br><em>de Anca</em><br>Prado</h1>
+        <img class="profile-photo" src="photo.jpg" alt="Violeta de Anca Prado" />
       </div>
 
-      <p class="hero-tag">PhD Researcher · Uppsala University · Sweden</p>
-      <h1>Violeta<br><em>de Anca</em><br>Prado</h1>
       <p class="hero-subtitle">
         Computational biologist developing dry lab methods to 
         study metabolic diseases through a multi-omic approach
