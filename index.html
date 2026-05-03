@@ -10,18 +10,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --teal:       #1a4a47;
-      --teal-mid:   #2d6b66;
-      --teal-light: #4a9e96;
-      --sand:       #f2ede4;
-      --cream:      #faf8f4;
-      --ink:        #1c1c1c;
-      --muted:      #6b7280;
-      --accent:     #c7622a;
-      --border:     #d6cfc3;
+      --dark:       #2d0320;   /* darkest — hero bg, footer accents        */
+      --deep:       #392b58;   /* deep purple — section bgs, titles         */
+      --mid:        #645e9d;   /* medium purple — borders, accents, hover   */
+      --slate:      #6c969d;   /* muted teal — muted text, meta             */
+      --mint:       #99d5c9;   /* light mint — highlights, badges, glows    */
+
+      /* Semantic aliases (keeps the rest of the CSS readable) */
+      --teal:       var(--deep);
+      --teal-mid:   var(--mid);
+      --teal-light: var(--mint);
+      --accent:     var(--mid);
+      --muted:      var(--slate);
+
+      --sand:       #f0eaf8;   /* very light lavender-white */
+      --cream:      #faf8fd;   /* page background            */
+      --ink:        #1a1025;   /* near-black with purple tint */
+      --border:     #d3cce8;
       --card-bg:    #ffffff;
-      --tag-bg:     #e8f4f3;
-      --tag-color:  #2d6b66;
+      --tag-bg:     #ece8f8;
+      --tag-color:  var(--mid);
     }
 
     html { scroll-behavior: smooth; }
@@ -44,14 +52,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 3rem;
-      background: rgba(250,248,244,0.9);
+      background: rgba(250,248,253,0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-family: 'EB Garamond', serif;
       font-size: 1.15rem;
-      color: var(--teal);
+      color: var(--deep);
       letter-spacing: 0.02em;
     }
     .nav-links { display: flex; gap: 2rem; }
@@ -64,7 +72,7 @@
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover { color: var(--deep); }
 
     /* ── HERO ── */
     .hero {
@@ -75,7 +83,7 @@
       overflow: hidden;
     }
     .hero-left {
-      background: var(--teal);
+      background: var(--dark);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -86,8 +94,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at 20% 80%, rgba(74,158,150,0.25) 0%, transparent 60%),
-                        radial-gradient(circle at 80% 20%, rgba(74,158,150,0.12) 0%, transparent 50%);
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(153,213,201,0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(100,94,157,0.22) 0%, transparent 50%);
     }
     .helix {
       position: absolute;
@@ -102,13 +111,13 @@
     .helix-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
-      background: var(--teal-light);
+      background: var(--mint);
       opacity: 0.6;
       margin: 6px 0;
       animation: helixFloat 4s ease-in-out infinite;
     }
     .helix-dot:nth-child(odd)  { transform: translateX(20px); animation-delay: 0.5s; }
-    .helix-dot:nth-child(3n)   { opacity: 0.3; }
+    .helix-dot:nth-child(3n)   { opacity: 0.3; background: var(--mid); }
     @keyframes helixFloat {
       0%, 100% { transform: translateX(var(--x, 0)); }
       50%       { transform: translateX(calc(var(--x, 0) + 8px)); }
@@ -117,7 +126,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
       font-weight: 300;
-      color: var(--teal-light);
+      color: var(--mint);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
@@ -133,12 +142,12 @@
       position: relative;
       z-index: 1;
     }
-    h1 em { font-style: italic; color: var(--teal-light); }
+    h1 em { font-style: italic; color: var(--mint); }
     .hero-subtitle {
       margin-top: 1.5rem;
       font-size: 0.95rem;
       font-weight: 300;
-      color: rgba(242,237,228,0.7);
+      color: rgba(240,234,248,0.65);
       line-height: 1.7;
       max-width: 380px;
       position: relative;
@@ -155,11 +164,12 @@
     .badge {
       font-size: 0.75rem;
       padding: 0.3rem 0.75rem;
-      border: 1px solid rgba(74,158,150,0.5);
+      border: 1px solid rgba(153,213,201,0.4);
       border-radius: 2px;
-      color: var(--teal-light);
+      color: var(--mint);
       letter-spacing: 0.04em;
     }
+
     .hero-right {
       background: var(--sand);
       display: flex;
@@ -171,12 +181,13 @@
       font-family: 'EB Garamond', serif;
       font-size: 1.1rem;
       font-weight: 400;
-      color: var(--accent);
+      color: var(--mid);
       margin-bottom: 1rem;
       letter-spacing: 0.04em;
     }
     .research-text { font-size: 1rem; color: var(--ink); line-height: 1.8; font-weight: 300; }
-    .research-text strong { font-weight: 500; color: var(--teal); }
+    .research-text strong { font-weight: 500; color: var(--deep); }
+
     .links-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -198,9 +209,9 @@
       transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
     .ext-link:hover {
-      border-color: var(--teal-light);
+      border-color: var(--mid);
       transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(26,74,71,0.08);
+      box-shadow: 0 4px 16px rgba(100,94,157,0.12);
     }
     .ext-link .link-icon { font-size: 1.1rem; flex-shrink: 0; }
     .ext-link .link-label { color: var(--muted); font-size: 0.72rem; display: block; }
@@ -223,7 +234,7 @@
       font-family: 'EB Garamond', serif;
       font-size: 2.2rem;
       font-weight: 400;
-      color: var(--teal);
+      color: var(--deep);
     }
     .section-num {
       font-family: 'DM Mono', monospace;
@@ -249,7 +260,7 @@
     }
     .featured-card {
       background: var(--card-bg);
-      border: 1.5px solid var(--teal-mid);
+      border: 1.5px solid var(--mid);
       border-radius: 8px;
       padding: 2rem;
       display: flex;
@@ -266,12 +277,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(26,74,71,0.03) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(57,43,88,0.03) 0%, transparent 60%);
       pointer-events: none;
     }
     .featured-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(26,74,71,0.13);
+      box-shadow: 0 12px 36px rgba(100,94,157,0.15);
     }
     .featured-badge {
       display: inline-flex;
@@ -281,9 +292,9 @@
       font-size: 0.65rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: var(--teal-light);
-      background: rgba(74,158,150,0.08);
-      border: 1px solid rgba(74,158,150,0.25);
+      color: var(--mint);
+      background: rgba(153,213,201,0.1);
+      border: 1px solid rgba(153,213,201,0.35);
       border-radius: 2px;
       padding: 0.25rem 0.6rem;
       width: fit-content;
@@ -292,7 +303,7 @@
       font-family: 'EB Garamond', serif;
       font-size: 1.2rem;
       font-weight: 600;
-      color: var(--teal);
+      color: var(--deep);
       line-height: 1.3;
     }
     .featured-slug {
@@ -310,7 +321,7 @@
       font-weight: 300;
       flex-grow: 1;
     }
-    .featured-summary strong { font-weight: 500; color: var(--teal-mid); }
+    .featured-summary strong { font-weight: 500; color: var(--mid); }
     .featured-footer {
       display: flex;
       align-items: center;
@@ -326,7 +337,7 @@
       font-size: 0.78rem;
       color: var(--muted);
     }
-    .feat-pub { font-size: 0.72rem; color: var(--accent); font-weight: 500; }
+    .feat-pub { font-size: 0.72rem; color: var(--mid); font-weight: 500; }
 
     /* ── OTHER CARDS ── */
     .other-grid {
@@ -354,7 +365,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--teal), var(--teal-light));
+      background: linear-gradient(90deg, var(--deep), var(--mint));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
@@ -362,8 +373,8 @@
     .repo-card:hover::before { transform: scaleX(1); }
     .repo-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(26,74,71,0.1);
-      border-color: var(--teal-light);
+      box-shadow: 0 8px 28px rgba(100,94,157,0.12);
+      border-color: var(--mid);
     }
     @keyframes cardIn {
       from { opacity: 0; transform: translateY(12px); }
@@ -373,7 +384,7 @@
       font-family: 'EB Garamond', serif;
       font-size: 1rem;
       font-weight: 600;
-      color: var(--teal);
+      color: var(--deep);
       line-height: 1.3;
     }
     .repo-name-raw {
@@ -401,7 +412,7 @@
     .lang-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
     /* ── ABOUT ── */
-    .about-section { background: var(--teal); padding: 6rem 3rem; }
+    .about-section { background: var(--deep); padding: 6rem 3rem; }
     .about-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -420,21 +431,21 @@
     .about-inner p {
       font-size: 0.95rem;
       font-weight: 300;
-      color: rgba(242,237,228,0.8);
+      color: rgba(240,234,248,0.78);
       line-height: 1.85;
       margin-bottom: 1rem;
     }
     .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
-    .tl-item { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: start; }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; align-items: start; }
     .tl-year {
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--teal-light);
+      font-size: 0.72rem;
+      color: var(--mint);
       padding-top: 3px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
     .tl-content h4 { font-size: 0.92rem; font-weight: 500; color: var(--sand); margin-bottom: 0.2rem; }
-    .tl-content p  { font-size: 0.82rem; color: rgba(242,237,228,0.6); margin: 0; line-height: 1.5; }
+    .tl-content p  { font-size: 0.82rem; color: rgba(240,234,248,0.55); margin: 0; line-height: 1.5; }
 
     /* ── FOOTER ── */
     footer {
@@ -448,7 +459,7 @@
     footer p { font-size: 0.82rem; color: var(--muted); }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--teal); }
+    .footer-links a:hover { color: var(--deep); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -499,7 +510,7 @@
       <p class="hero-tag">PhD Researcher · Uppsala University · Sweden</p>
       <h1>Violeta<br><em>de Anca</em><br>Prado</h1>
       <p class="hero-subtitle">
-        Bioinformatician developing dry lab methods to 
+        Computational biologist developing dry lab methods to 
         study metabolic diseases through a multi-omic approach
         — exploring the relationship between DNA methylation 
         and genomic stability.
@@ -569,15 +580,13 @@
           <p class="featured-summary">
             GBS-MeDIP is a cost-effective method combining genotyping-by-sequencing and 
             methylated DNA immunoprecipitation — but its unique output makes conventional 
-            pipelines inadequate. This project benchmarks multiple statistical approaches 
-            — <strong>EdgeR, DESeq2, limma and Mann-Whitney</strong> — across chicken, dog 
-            and pig datasets. FeatureCounts was identified as the most reliable tool for 
-            count matrix generation, and Mann-Whitney delivered the lowest false-positive 
-            rate for differential methylation analysis.
+            pipelines inadequate. This project developed a novel method and benchmarked it 
+            against state-of-the-art statistical approaches for count data — <strong>EdgeR, 
+            DESeq2, limma and Mann-Whitney</strong>.
           </p>
           <div class="featured-footer">
             <span class="feat-lang">
-              <span class="lang-dot" style="background:#198CE7"></span>R
+              <span class="lang-dot" style="background:#99d5c9"></span>R/Linux
             </span>
             <span class="feat-pub">de Anca Prado et al., 2026</span>
           </div>
@@ -586,21 +595,21 @@
         <a class="featured-card" style="animation-delay:0.08s"
            href="https://github.com/Violeta-de-Anca/Evolution_of_SNP_emerging_in_relation_to_methylation_fragments_in_an_obesogenic_environment"
            target="_blank" rel="noopener noreferrer">
-          <span class="featured-badge">🧬 &nbsp;PhD Main Project</span>
+          <span class="featured-badge">📄 &nbsp;Submitted to Env. Epigenetics</span>
           <div>
             <div class="featured-name">Evolution of SNPs in Relation to Methylation in an Obesogenic Environment</div>
           </div>
           <p class="featured-summary">
-            The mechanisms by which early-life metabolic environments alter genome stability 
-            remain largely unknown. This project investigates the <strong>co-emergence of 
-            SNPs and DNA methylation changes</strong> in a childhood obesity mouse model, 
-            using GBS-MeDIP to examine whether epigenetic marks at specific loci precede 
+            The mechanisms by which early-life metabolic disease alter genome stability 
+            remain largely unknown. This project investigates the <strong>relationship between genomic variation 
+            and DNA methylation changes</strong> in a childhood obesity mouse model, 
+            using reduced representation to examine whether epigenetic marks at specific loci precede 
             or accompany the appearance of genetic variants across generations — contributing 
             to our understanding of how obesogenic environments may reshape the genome.
           </p>
           <div class="featured-footer">
             <span class="feat-lang">
-              <span class="lang-dot" style="background:#198CE7"></span>R
+              <span class="lang-dot" style="background:#99d5c9"></span>R/Linux
             </span>
             <span class="feat-pub">PhD Research</span>
           </div>
@@ -616,19 +625,21 @@
            href="https://github.com/Violeta-de-Anca/GBS_MeDIP_nextflow_pipeline"
            target="_blank" rel="noopener noreferrer">
           <div class="repo-name">GBS-MeDIP Nextflow Pipeline</div>
-          <p class="repo-desc">A reproducible, end-to-end Nextflow pipeline for processing and analysing raw GBS-MeDIP sequencing data, from quality control to differential methylation output.</p>
+          <p class="repo-desc">A reproducible, end-to-end Nextflow pipeline for processing and analysing raw GBS-MeDIP sequencing data, 
+            from quality control to differential methylation output.</p>
           <span class="repo-lang">
-            <span class="lang-dot" style="background:#89e051"></span>Nextflow
+            <span class="lang-dot" style="background:#645e9d"></span>Nextflow
           </span>
         </a>
 
         <a class="repo-card" style="animation-delay:0.22s"
            href="https://github.com/Violeta-de-Anca/Effects-of-a-multigenerational-exposure-to-early-life-high-calorie-intake-in-adipocyte-methylation"
            target="_blank" rel="noopener noreferrer">
-          <div class="repo-name">Multigenerational High-Calorie Exposure &amp; Adipocyte Methylation</div>
-          <p class="repo-desc">Analysis of how repeated early-life exposure to a high-calorie diet across multiple generations reshapes the DNA methylation landscape in adipocytes.</p>
+          <div class="repo-name">Multiomic integration for a comprehensive understanding of early life metabolic disruption in a multigenerational exposure</div>
+          <p class="repo-desc">This article highlights the importance of data integration in big data studies through a multi-omic framework combining epigenomic
+            and metagenomic data in the context of multigenerational exposure to metabolic challenges.</p>
           <span class="repo-lang">
-            <span class="lang-dot" style="background:#198CE7"></span>R
+            <span class="lang-dot" style="background:#99d5c9"></span>R/Python/Linux
           </span>
         </a>
 
@@ -636,9 +647,10 @@
            href="https://github.com/Violeta-de-Anca/microbiota_C57"
            target="_blank" rel="noopener noreferrer">
           <div class="repo-name">Microbiota C57</div>
-          <p class="repo-desc">Gut microbiota composition analysis in C57BL/6 mice, exploring the interplay between the microbiome and epigenetic state in a metabolic disease model.</p>
+          <p class="repo-desc">Integration of metagenomic data derived from a multigenerational 
+            exposure to early-life metabolic diseases in C57BL/6 mice.</p>
           <span class="repo-lang">
-            <span class="lang-dot" style="background:#198CE7"></span>R
+            <span class="lang-dot" style="background:#99d5c9"></span>Python/Linux
           </span>
         </a>
 
@@ -646,9 +658,9 @@
            href="https://github.com/Violeta-de-Anca/mitochondria_epigenetic_signal"
            target="_blank" rel="noopener noreferrer">
           <div class="repo-name">Mitochondrial Epigenetic Signal</div>
-          <p class="repo-desc">Characterisation of epigenetic signals originating from mitochondrial DNA fragments in GBS-MeDIP datasets, separating nuclear from mitochondrial methylation reads.</p>
+          <p class="repo-desc">Characterisation of epigenetic signals from mitochondrial DNA employing nanopore sequencing technologies.</p>
           <span class="repo-lang">
-            <span class="lang-dot" style="background:#198CE7"></span>R
+            <span class="lang-dot" style="background:#6c969d"></span>Nanopore/Python/Linux
           </span>
         </a>
 
@@ -656,9 +668,10 @@
            href="https://github.com/Violeta-de-Anca/Toxicology_IBG_UU"
            target="_blank" rel="noopener noreferrer">
           <div class="repo-name">Toxicology IBG — Uppsala University</div>
-          <p class="repo-desc">Teaching resource for the Uppsala University joint Toxicology course: a step-by-step lab guide modelling absorption rate as a function of injection site.</p>
+          <p class="repo-desc">Teaching resource for the Uppsala University joint Toxicology course: a step-by-step lab guide 
+            for toxicokinetics.</p>
           <span class="repo-lang">
-            <span class="lang-dot" style="background:#198CE7"></span>R
+            <span class="lang-dot" style="background:#99d5c9"></span>R
           </span>
         </a>
 
@@ -674,11 +687,11 @@
         <p>
           Bioinformatician with 6 years of experience in NGS technology in genetics,
           epigenetics, and metagenomics, including nanopore sequencing. Extensive experience 
-          with developing pipelines for new wet lab methods, including implementation in Nextflow. 
-          Experience working with antibodies for immunoprecipitation (MeDIP), with variant calling (SNP and CNV). 
+          with developing pipelines for new wet-lab methods, including implementation in Nextflow. 
+          Experience working with multi-modal data, especially epigenetics and genomics for data integration.  
           Coordination of international projects as well as organization of seminars 
           and extensive experience with presentation in national and international 
-          context. Motivated by collaboration of different bodies to expand scientific knowledge.
+          context. Motivated by collaboration of different stakeholders to expand scientific knowledge.
         </p>
         <p>
           Beyond the terminal, I am committed to open science and the advancement of society — all 
@@ -687,31 +700,31 @@
       </div>
       <div class="timeline">
         <div class="tl-item">
-          <span class="tl-year">Present</span>
+          <span class="tl-year">2022–2026</span>
           <div class="tl-content">
-            <h4>PhD Candidate — Uppsala University</h4>
+            <h4>PhD — Uppsala University</h4>
             <p>Physiology & Environmental Toxicology</p>
           </div>
         </div>
         <div class="tl-item">
-          <span class="tl-year">MSc</span>
+          <span class="tl-year">2020–2021</span>
           <div class="tl-content">
             <h4>Master Thesis — Centre for Palaeogenetics</h4>
-            <p>Stockholm University · Human population studies utilizing aDNA</p>
+            <p>Stockholm University · Human population studies employing aDNA</p>
           </div>
         </div>
         <div class="tl-item">
           <span class="tl-year">2020</span>
           <div class="tl-content">
             <h4>Internship — Naturhistoriska riksmuseet</h4>
-            <p>Fossil fungi image analysis with Prof. Steve McLoughlin · First-author publication in Deposits Magazine</p>
+            <p>Image analysis of fossil fungi · First-author publication in Deposits Magazine</p>
           </div>
         </div>
         <div class="tl-item">
-          <span class="tl-year">BSc</span>
+          <span class="tl-year">2018–2019</span>
           <div class="tl-content">
-            <h4>Degree Project — CNB Madrid</h4>
-            <p>Centro Nacional de Biotecnología · Antibiotic resistance studies for clinical context</p>
+            <h4>Bachelor's Thesis — Centro Nacional de Biotecnología</h4>
+            <p>Universidad Autónoma de Madrid · Antibiotic resistance studies for clinical contexts</p>
           </div>
         </div>
       </div>
@@ -720,11 +733,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Violeta de Anca Prado · Uppsala, Sweden</p>
+    <p>2022 Violeta de Anca Prado · Stockholm, Sweden</p>
     <div class="footer-links">
       <a href="https://orcid.org/0000-0003-1845-509X" target="_blank">ORCID</a>
       <a href="https://github.com/Violeta-de-Anca" target="_blank">GitHub</a>
-      <a href="https://katalog.uu.se/empinfo/?id=N22-10" target="_blank">Office</a>
+      <a href="https://katalog.uu.se/empinfo/?id=N22-10" target="_blank">UU</a>
     </div>
   </footer>
 
